@@ -1,0 +1,1 @@
+var brandData=angular.module('managerBrand',['pagination']);
