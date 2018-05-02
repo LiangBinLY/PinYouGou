@@ -2,6 +2,7 @@ package com.pinyougou.manager.controller;
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.entity.Result;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojogroup.Specification;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -94,7 +95,7 @@ public class SpecificationController {
 	@RequestMapping("/delete")
 	public Result delete(Long [] ids){
 		try {
-			specificationService.delete(ids);
+			specificationService. delete(ids);
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,5 +114,10 @@ public class SpecificationController {
 	public PageResult search(@RequestBody TbSpecification specification, int page, int rows  ){
 		return specificationService.findPage(specification, page, rows);		
 	}
-	
+
+
+	@RequestMapping("/findSpecification")
+	public List<Map> findSpecification(){
+		return specificationService.findSpecification();
+	}
 }

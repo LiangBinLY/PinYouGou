@@ -19,6 +19,9 @@ brandData.service("brandService",function ($http) {
     this.search=function (pageNum,pageSize,searchEntity) {
         return $http.post("../brand/search.do?pageNum="+pageNum+"&pageSize="+pageSize,searchEntity);
     };
+    this.findBrand=function () {
+        return $http.get("../brand/findBrand.do");
+    }
 
 
 })

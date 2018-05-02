@@ -4,6 +4,7 @@ import com.pinyougou.entity.PageResult;
 import com.pinyougou.pojo.TbBrand;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LiangBin
@@ -29,4 +30,6 @@ public interface BrandService {
 
     //搜索查询
     public PageResult findPage(TbBrand tbBrand,int pageNum,int pageSize);
+
+    public List<Map> findBrand();
 }

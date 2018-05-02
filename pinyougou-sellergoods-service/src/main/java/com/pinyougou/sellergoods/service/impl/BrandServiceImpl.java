@@ -11,7 +11,10 @@ import com.pinyougou.pojo.TbBrandExample;
 import com.pinyougou.sellergoods.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LiangBin
@@ -88,6 +91,19 @@ public class BrandServiceImpl implements BrandService{
         pageResult.setRows(page.getResult());
         return pageResult;
 
+    }
+
+    @Override
+    public List<Map> findBrand() {
+        List<TbBrand> tbBrandList = tbBrandMapper.selectByExample(null);
+        List<Map> listMap=new ArrayList<>();
+        for (TbBrand tbBrand:tbBrandList){
+            Map map=new HashMap();
+            map.put("id",tbBrand.getId());
+            map.put("text",tbBrand.getName());
+            listMap.add(map);
+        }
+        return listMap;
     }
 
 

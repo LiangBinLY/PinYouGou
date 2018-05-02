@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author LiangBin
@@ -94,6 +95,11 @@ public class BrandController {
 
         return brandService.findPage(brand,pageNum,pageSize);
 
+    }
+    //品牌列表的下拉框
+    @RequestMapping("/findBrand")
+    public List<Map> findBrand(){
+        return brandService.findBrand();
     }
 
 }

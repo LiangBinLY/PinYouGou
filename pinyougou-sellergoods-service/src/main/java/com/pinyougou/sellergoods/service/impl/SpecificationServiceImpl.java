@@ -1,6 +1,10 @@
 package com.pinyougou.sellergoods.service.impl;
 import com.pinyougou.entity.PageResult;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.TbSpecificationOption;
@@ -122,6 +126,9 @@ public class SpecificationServiceImpl implements SpecificationService {
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
+			TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+			TbSpecificationOptionExample.Criteria criteria = example.createCriteria().andSpecIdEqualTo(id);
+			optionMapper.deleteByExample(example);
 			specificationMapper.deleteByPrimaryKey(id);
 		}		
 	}
@@ -144,5 +151,18 @@ public class SpecificationServiceImpl implements SpecificationService {
 		Page<TbSpecification> page= (Page<TbSpecification>)specificationMapper.selectByExample(example);		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
-	
+
+    @Override
+    public List<Map> findSpecification() {
+		List<TbSpecification> tbSpecificationList = specificationMapper.selectByExample(null);
+		List<Map> listMap=new ArrayList<>();
+		for(TbSpecification tbSpecification:tbSpecificationList){
+			Map map=new HashMap();
+			map.put("id",tbSpecification.getId());
+			map.put("text",tbSpecification.getSpecName());
+			listMap.add(map);
+		}
+		return listMap;
+    }
+
 }
